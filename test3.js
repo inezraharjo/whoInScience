@@ -1,0 +1,11 @@
+var HashMap = require('hashmap');
+var myHashMap = new HashMap();
+console.log(myHashMap);
+myHashMap.set("John",400);
+console.log(myHashMap);
+myHashMap.set("Dolly",200);
+console.log(myHashMap);
+var curval = myHashMap.get("John");
+curval = curval + 100;
+myHashMap.set("John", curval);
+console.log(myHashMap);

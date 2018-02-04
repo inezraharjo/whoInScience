@@ -1,0 +1,24 @@
+<div id="textDiv"></div>  
+<script type="text/javascript">  
+    var div = document.getElementById("textDiv");  
+
+    myxml = httpGet("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=acquired+cognitive+impairment");
+	
+	parser = new DOMParser();
+	xmlDoc = parser.parseFromString(myxml, "text/xml");
+
+	mycount = xmlDoc.getElementsByTagName("Count")[0].childNodes[0].nodeValue;
+
+	function httpGet(theUrl)
+	{
+		var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+		var xmlHttp = new XMLHttpRequest();
+	    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+	    xmlHttp.send( null );
+	    return xmlHttp.responseText;
+	}
+
+
+    div.textContent = myxml;  
+    var text = div.textContent;  
+</script>  

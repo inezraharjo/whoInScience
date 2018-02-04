@@ -1,0 +1,26 @@
+<script>
+myxml = httpGet("https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=acquired+cognitive+impairment");
+print(myxml)
+
+parser = new DOMParser();
+xmlDoc = parser.parseFromString(myxml, "text/xml");
+
+print(xmlDoc.getElementsByTagName("Count")[0].childNodes[0].nodeValue)
+
+function httpGet(theUrl)
+{
+	var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+	var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+/*
+else // Internet Explorer
+{
+    xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+    xmlDoc.async = false;
+    xmlDoc.loadXML(txt);
+} */
+</script>
